@@ -1,23 +1,31 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import '../globals.css';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const closeMenu = () => setIsOpen(false); // Cierra menú al hacer clic
+
   return (
     <header className="header">
-      <div className="logo">Mi Sitio</div>
+      <div className="logo">
+        <Link href="/" onClick={closeMenu}>Mi Sitio</Link>
+      </div>
+
       <nav className={`nav ${isOpen ? 'open' : ''}`}>
-        <a href="#">Inicio</a>
-        <a href="#">Acerca</a>
-        <a href="#">Servicios</a>
-        <a href="#">Contacto</a>
+        <Link href="/inicio" onClick={closeMenu}>Inicio</Link>
+        <Link href="/acerca" onClick={closeMenu}>Acerca</Link>
+        <Link href="/servicios" onClick={closeMenu}>Servicios</Link>
+        <Link href="/contacto" onClick={closeMenu}>Contacto</Link>
       </nav>
+
       <div
         className={`hamburger ${isOpen ? 'active' : ''}`}
         onClick={() => setIsOpen(!isOpen)}
+        aria-label="Abrir menú"
       >
         <span></span>
         <span></span>
